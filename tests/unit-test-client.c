@@ -511,7 +511,7 @@ int main(int argc, char *argv[])
         ASSERT_TRUE(rc == -1 && errno == ETIMEDOUT, "");
 
         rc = modbus_set_slave(ctx, MODBUS_BROADCAST_ADDRESS);
-        ASSERT_TRUE(rc != -1, "Invalid broadcast address");
+        ASSERT_TRUE(rc == 0, "Invalid broadcast address");
 
         rc = modbus_read_registers(ctx, UT_REGISTERS_ADDRESS,
                                    UT_REGISTERS_NB, tab_rp_registers);
@@ -523,7 +523,7 @@ int main(int argc, char *argv[])
         ASSERT_TRUE(rc == UT_REGISTERS_NB, "");
 
         rc = modbus_set_slave(ctx, MODBUS_BROADCAST_ADDRESS);
-        ASSERT_TRUE(rc != -1, "Invalid broacast address");
+        ASSERT_TRUE(rc == 0, "Invalid broacast address");
 
         rc = modbus_read_registers(ctx, UT_REGISTERS_ADDRESS,
                                    UT_REGISTERS_NB, tab_rp_registers);
