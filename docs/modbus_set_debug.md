@@ -26,4 +26,5 @@ Waiting for a confirmation...
 
 ## Return value
 
-The function shall return 0 if successful. Otherwise it shall return -1 and set errno.
+The function shall return 0 if successful. Otherwise it shall return -1 and set
+errno.

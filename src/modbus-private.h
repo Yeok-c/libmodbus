@@ -96,6 +96,8 @@ struct _modbus {
     int s;
     int debug;
     int error_recovery;
+    /* By default, the library is compliant to the Modbus standard */
+    int is_compliant;
     struct timeval response_timeout;
     struct timeval byte_timeout;
     struct timeval indication_timeout;

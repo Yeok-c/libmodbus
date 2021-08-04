@@ -123,11 +123,20 @@ Modbus devices:
 In RTU, you should define the slave ID of your client with
 [modbus_set_slave](modbus_set_slave).
 
-To analyse the exchanged data, you can enable the debug mode with
-[modbus_set_debug](modbus_set_debug).
-
 Once you have completed the communication or at the end of your program, you
 should free the resources with the common function, [modbus_free](modbus_free)
+
+## Set a specific mode
+
+To analyse the exchanged data, you can enable the debug mode with
+[modbus_set_debug](modbus_set_debug) to display the content of the requests and
+the responses on stdout.
+
+The change the behaviour on error, you can use [modbus_set_error_recovery](modbus_set_error_recovery).
+
+Some devices aren't strictly compliant with the Modbus protocol so sometimes it
+may be necessary to relax the level of compliance, you can use
+[modbus_set_compliant](modbus_set_compliant).
 
 ## Reads and writes from the client
 
@@ -191,10 +200,6 @@ Timeout settings:
 - [modbus_set_byte_timeout](modbus_set_byte_timeout)
 - [modbus_get_response_timeout](modbus_get_response_timeout)
 - [modbus_set_response_timeout](modbus_set_response_timeout)
-
-Error recovery mode:
-
-- [modbus_set_error_recovery](modbus_set_error_recovery)
 
 Setter/getter of internal socket:
 

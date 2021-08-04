@@ -1635,6 +1635,7 @@ void _modbus_init_common(modbus_t *ctx)
 
     ctx->debug = FALSE;
     ctx->error_recovery = MODBUS_ERROR_RECOVERY_NONE;
+    ctx->is_compliant = TRUE;
 
     ctx->response_timeout.tv_sec = 0;
     ctx->response_timeout.tv_usec = _RESPONSE_TIMEOUT;
@@ -1813,6 +1814,17 @@ void modbus_free(modbus_t *ctx)
         return;
 
     ctx->backend->free(ctx);
+}
+
+int modbus_set_compliant(modbus_t *ctx, int flag)
+{
+    if (ctx == NULL) {
+        errno = EINVAL;
+        return -1;
+    }
+
+    ctx->is_compliant = flag;
+    return 0;
 }
 
 int modbus_set_debug(modbus_t *ctx, int flag)

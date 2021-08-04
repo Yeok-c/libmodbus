@@ -451,8 +451,23 @@ int main(int argc, char *argv[])
     printf("* modbus_write_registers: ");
     ASSERT_TRUE(rc == -1 && errno == EMBMDATA, "");
 
-    /** SLAVE REPLY **/
+    /** TEST SLAVE ADDRESS **/
     old_slave = modbus_get_slave(ctx);
+
+    printf("\nTEST SLAVE ADDRESS:\n");
+
+    printf("1/2 Not compliant slave address is refused: ");
+    rc = modbus_set_slave(ctx, 248);
+    ASSERT_TRUE(rc == -1, "Slave address of 248 musn't be allowed");
+
+    printf("2/2 Not compliant slave address is allowed: ");
+    modbus_set_compliant(ctx, FALSE);
+    rc = modbus_set_slave(ctx, 248);
+    ASSERT_TRUE(rc == 0, "Not compliant slave address musn't be refused");
+
+    modbus_set_compliant(ctx, TRUE);
+
+    /** SLAVE REPLY **/
 
     printf("\nTEST SLAVE REPLY:\n");
     modbus_set_slave(ctx, INVALID_SERVER_ID);
